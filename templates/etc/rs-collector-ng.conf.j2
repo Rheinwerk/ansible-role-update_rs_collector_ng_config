@@ -1,0 +1,20 @@
+[[emitter.bosun]]
+host = "{{ _.bosun.host }}"
+{% if _.bosun.tags is defined -%}
+[emitter.bosun.tags]
+{% for k,v in _.bosun.tags.items() -%}
+{{ k }} = {{ v | to_json }}
+{% endfor %}
+{% endif %}
+
+{% for name in ["postfix", "jvm", "rscollector", "galera", "mongo"] %}
+{% if name in _%}
+{% for collector_data in _[name] %}
+[[collector.{{ name }}]]
+{% for k,v in collector_data.items() %}
+{{ k }} = {{ v | to_json }}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+{% endfor %}
