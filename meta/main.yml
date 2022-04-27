@@ -1,6 +1,7 @@
 ---
 allow_duplicates: yes
 galaxy_info:
+  role_name: update_rs_collector_ng_config
   author: Dennis Frenken
   description: Configures rs_collector_ng
   company: Rheinwerk
