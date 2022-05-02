@@ -1,11 +1,19 @@
-# requires _scollector, DEFAULT_BOSUN_TAGS, SITE
-SCOLLECTOR_TAGS: "{{ _scollector.common.tags | default({}) }}"
-INSTANCE_TAGS:
-  host: "{{ ansible_fqdn }}"
+S_COLLECTOR_DEFAULTS:
+  auth:
+    user: bosun
+    password: bosun
+  server:
+    ip: localhost
+    port: 8080
+  hostname: hostname
+  hostgroup: hostgroup
+  common:
+    tags: {}
+S_COLLECTOR_ACTUAL: "{{ _scollector | default(S_COLLECTOR_DEFAULTS) }}"
 RS_COLLECTOR_DEFAULTS:
   bosun:
-    host: "https://{{ _scollector.auth.user }}:{{ _scollector.auth.password }}@{{ _scollector.server.ip }}:{{ _scollector.server.port }}/"
-    tags: "{{ INSTANCE_TAGS | combine( SCOLLECTOR_TAGS ) }}"
+    host: "https://{{ S_COLLECTOR_ACTUAL.auth.user }}:{{ S_COLLECTOR_ACTUAL.auth.password }}@{{ S_COLLECTOR_ACTUAL.server.ip }}:{{ S_COLLECTOR_ACTUAL.server.port }}/"
+    tags: "{{ S_COLLECTOR_ACTUAL.common.tags | combine({'hostgroup': S_COLLECTOR_ACTUAL.hostgroup, 'host': S_COLLECTOR_ACTUAL.hostname}) }}"
   # enable postfix and rscollector by default, unless overridden by user
   postfix: [{}]
   rscollector: [{}]
