@@ -12,9 +12,15 @@ host = "{{ _.bosun.host }}"
 {% for collector_data in _[name] %}
 [[collector.{{ name }}]]
 {% for k,v in collector_data.items() %}
-{{ k }} = {{ v | to_json }}
+{% if k == "tags" %}
+[emitter.{{ name }}.tags]
+{% for tk,tv in v.items() -%}
+{{ tk }} = {{ tv | to_json }}
 {% endfor %}
-
+{% else %}
+{{ k }} = {{ v | to_json }}
+{% endif %}
+{% endfor %}
 {% endfor %}
 {% endif %}
 {% endfor %}
