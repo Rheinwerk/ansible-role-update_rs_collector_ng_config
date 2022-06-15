@@ -8,7 +8,7 @@
     RSCOLLECTORNG:
       ...
   roles:
-    - { role: update_scollector_config, tags: [ 'scollector' ], _rs_collector_ng: "{{ RSCOLLECTORNG }}" }
+    - { role: update_rs_collector_ng_config, tags: [ 'rscollectorng' ], _rs_collector_ng: "{{ RSCOLLECTORNG }}" }
 ```
 
 ### Collectors
@@ -90,7 +90,7 @@ If the key `_rs_collector_ng.bosun` or any children are provided then the defaul
 _rs_collector_ng:
   # Bosun emitter
   bosun:
-    url: "https://user:password@hostname.example.com:8070/"
+    host: "https://user:password@hostname.example.com:8070/"
     tags: # tags are optional and can be omitted
       key: value
 ```
