@@ -1,7 +1,7 @@
 ---
 - name: Install configuration
   vars:
-    _: "{{ RS_COLLECTOR_DEFAULTS|combine(_rs_collector_ng|default({})) }}"
+    _: "{{ RS_COLLECTOR_DEFAULTS | combine(_rs_collector_ng | default({})) }}"
   template:
     src: "{{ item }}.j2"
     dest: "/{{ item }}"
