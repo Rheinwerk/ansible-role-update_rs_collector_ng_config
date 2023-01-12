@@ -1,4 +1,4 @@
-S_COLLECTOR_DUMMY_VALUES:
+S_COLLECTOR_DUMMY_VALUES: # noqa var-naming
   auth:
     user: bosun
     password: bosun
@@ -12,8 +12,8 @@ S_COLLECTOR_DUMMY_VALUES:
     tags: {}
 # Note: Dummy values are only required so that this var file does not break in absence of
 #       scollector values because the user chose to override the bosun config
-S_COLLECTOR_ACTUAL: "{{ _scollector | default(S_COLLECTOR_DUMMY_VALUES) }}"
-RS_COLLECTOR_DEFAULTS:
+S_COLLECTOR_ACTUAL: "{{ _scollector | default(S_COLLECTOR_DUMMY_VALUES) }}" # noqa var-naming
+RS_COLLECTOR_DEFAULTS: # noqa var-naming
   bosun:
     host: "https://{{ S_COLLECTOR_ACTUAL.auth.user }}:{{ S_COLLECTOR_ACTUAL.auth.password }}@{{ S_COLLECTOR_ACTUAL.server.ip }}:{{ S_COLLECTOR_ACTUAL.server.port }}/"
     tags: "{{ S_COLLECTOR_ACTUAL.common.tags | combine({'hostgroup': S_COLLECTOR_ACTUAL.hostgroup, 'host': S_COLLECTOR_ACTUAL.hostname ~ '.' ~ S_COLLECTOR_ACTUAL.domain}) }}"
