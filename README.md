@@ -52,6 +52,16 @@ _rs_collector_ng:
       ca_cert: /etc/path/to/ca.crt
 ```
 
+#### Ssh Certificate
+
+```yaml
+_rs_collector_ng:
+  ssh_certificate: # array of GALERA collectors
+    - path: /etc/ssh/example-cert.pub
+      name: my_cert # optional, inferred from file stem (example-cert)
+```
+
+
 #### Disable default collectors
 
 ```yaml

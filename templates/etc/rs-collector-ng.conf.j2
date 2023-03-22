@@ -7,7 +7,7 @@ host = "{{ _.bosun.host }}"
 {% endfor %}
 {% endif %}
 
-{% for name in ["postfix", "jvm", "rscollector", "galera", "mongo"] %}
+{% for name in ["postfix", "jvm", "rscollector", "galera", "mongo", "ssh_certificate"] %}
 {% if name in _%}
 {% for collector_data in _[name] %}
 [[collector.{{ name }}]]
