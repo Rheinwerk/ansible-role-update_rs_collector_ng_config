@@ -2,7 +2,7 @@
 - name: Install configuration
   vars:
     _: "{{ RS_COLLECTOR_DEFAULTS | combine(_rs_collector_ng | default({})) }}"
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "/{{ item }}"
     mode: 0600
