@@ -1,7 +1,6 @@
 ---
 galaxy_info:
-  author: Dennis Frenken
-  namespace: rheinwerk
+  author: rheinwerk
   role_name: update_rs_collector_ng_config
   description: Configures rs_collector_ng
   company: Rheinwerk
